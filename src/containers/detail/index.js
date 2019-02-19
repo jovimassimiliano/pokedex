@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 import Loader from '../../components/Loader';
+import PokemonDescription from '../../components/PokemonDescription';
 
 class Detail extends Component {
   state = {
@@ -28,7 +31,7 @@ class Detail extends Component {
 
   render() {
     const { pokemon, loading } = this.state;
-
+  
     if(loading){
       return(
         <Loader/>
@@ -36,8 +39,20 @@ class Detail extends Component {
     }
     return (
       <div className="container">
-        <h1>Detail</h1>
-        <button className="btn btn-warning">Hello</button>
+        <Link to="/">Back</Link>
+        <h1 className="text-capitalize">{pokemon && pokemon.name}</h1>
+        <div className="row">
+          <div className="col-md-2">
+            {
+              pokemon && (
+                <img src={pokemon.sprites["front_default"]} alt={pokemon.name}/>
+              )
+            }
+          </div>
+          <div className="col-md-6">
+            <PokemonDescription description={pokemon}/>
+          </div>
+        </div>
       </div>
     )
   }
