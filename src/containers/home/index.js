@@ -8,7 +8,7 @@ class Home extends Component {
   state = {
     list: [],
     loading: false,
-    limit: 10
+    limit: 0
   }
 
   componentDidMount() {
@@ -17,11 +17,12 @@ class Home extends Component {
 
   handleFetchPokemon = () => {
     const { limit } = this.state;
-    axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`)
+    axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit + 10}`)
       .then(res => 
             this.setState({
               list: res.data.results,
-              loading: false 
+              loading: false ,
+              limit: limit + 10
             })
           )
       .catch(err => console.log('err',err));
@@ -40,7 +41,17 @@ class Home extends Component {
             <h1>Pokedex</h1>
           </div>
         </div>
-        <PokemonList items={list}/>
+        <div className="row">
+          <PokemonList items={list}/>
+          <div className="col">
+            <button
+              className="btn btn-primary"
+              onClick={this.handleFetchPokemon}
+            >
+              Load More
+            </button>
+          </div>
+        </div>
       </div>
     )
   }
