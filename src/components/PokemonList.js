@@ -3,14 +3,14 @@ import React from 'react';
 import Pokemon from './Pokemon';
 
 const PokemonList = props => {
-  const { items } = props;
+  const { items, filter } = props;
 
   return(
     <React.Fragment>
     {
       items.map((item, index) => {
         return(
-          <Pokemon key={index} item={item}/>
+          <Pokemon filter={filter} key={index} item={item}/>
         )
       })
     }
