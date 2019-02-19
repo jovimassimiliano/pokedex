@@ -6,7 +6,7 @@ const Pokemon = ({item}) => {
   return(
     <div className="container">
       <Link to={`/detail/${item.name}`}>
-        <h1>{item.name}</h1>
+        <h3 className="text-capitalize">{item.name}</h3>
       </Link>
     </div>
   )
