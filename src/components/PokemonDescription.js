@@ -17,9 +17,9 @@ const PokemonDescription = (props) => {
         <ul className="list-inline">
           {
             description &&
-            description.types.map(type => {
+            description.types.map((type,index) => {
               return(
-                <li className="list-inline-item" key={type.name}>
+                <li className="list-inline-item" key={index}>
                   <span className="badge badge-pill badge-dark text-capitalize">
                   {type['type'].name}
                   </span>
